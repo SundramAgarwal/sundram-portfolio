@@ -1095,7 +1095,21 @@ input[type="checkbox"]:checked~.hamburger-lines .line3 {
 }
 
 
-#contact-form {
+#contact-form-button {
+    background-color: #f44336;
+    color: white;
+    padding: 19px 45px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 20px;
+    background-color: red;
+    border-radius: 30px;
+    border: #f44336;
+    font-size: 14px;
+  }
+
+/* #contact-form {
 
 
     background-color: #f44336;
@@ -1108,4 +1122,4 @@ input[type="checkbox"]:checked~.hamburger-lines .line3 {
 
     background-color: red;
     border-radius: 30px;
-}
+} */
