@@ -383,6 +383,16 @@ span {
     border-right: 1px solid #c1c1c1;
 }
 
+#about .about-list .list-item .email-label {
+    margin-left: 0px;
+    padding-right: 42px;
+  }
+
+#about .about-list .list-item .address-label {
+    margin-left: 0px;
+    padding-right: 42px;
+  }
+
 #about .about-list .list-item p {
     margin: 0;
     padding-left: 1rem;
@@ -1092,6 +1102,13 @@ input[type="checkbox"]:checked~.hamburger-lines .line3 {
     #portfolio .gallery-filter .filter-item {
         margin-bottom: 10px;
     }
+}
+
+@media (max-width: 550px) {
+    #about .about-list .list-item .email-label {
+        margin-left: 0px;
+        padding-right: 44px;
+      }
 }
 
 
