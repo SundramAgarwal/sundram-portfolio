@@ -713,7 +713,7 @@ a  { text-decoration: none; color: inherit; }
 .gallery-wrapper .gallery-filter .filter-item.active::after { width: 100%; left: 0; }
 .gallery-wrapper .gallery-filter .filter-item:hover { color: var(--text-secondary); }
 
-.content-wrapper { display: flex; flex-wrap: wrap; max-height: 20vh; }
+.content-wrapper { display: flex; flex-wrap: wrap; max-height: 10vh; }
 .gallery-item { width: calc(100% / 3); padding: 8px; }
 .gallery-item.show { animation: revealCard 0.5s var(--ease-expo); }
 .gallery-item.hide { display: none; }
@@ -1027,4 +1027,15 @@ input[type="checkbox"]:checked ~ .hamburger-lines .line3 { transform: rotate(-42
   z-index: 9998;
   transform: translate(-50%, -50%);
   transition: width 0.35s var(--ease-expo), height 0.35s var(--ease-expo), border-color 0.3s;
+}
+
+@media (max-width: 769px) {
+  .content-wrapper {
+    max-height: 40vh;
+  }
+}
+@media (max-width: 426px) {
+  .content-wrapper {
+    max-height: 80vh;
+  }
 }
