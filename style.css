@@ -925,42 +925,45 @@ footer p {
 /* ══════════════════════════════════════════
    HAMBURGER / MOBILE NAV
 ══════════════════════════════════════════ */
-#navbar .checkbox {
-  position: absolute;
-  width: 36px; height: 28px;
-  right: 6vw;
-  opacity: 0;
-  display: none;
-  cursor: pointer;
-  z-index: 10;
-}
+
+/* Hide the original checkbox entirely — we use JS toggle instead */
+#navbar .checkbox { display: none !important; }
+
+/* Hamburger button — hidden on desktop, shown on mobile */
 .hamburger-lines {
   position: absolute;
-  width: 26px; height: 18px;
+  width: 28px; height: 20px;
   right: 6vw;
-  pointer-events: none;
   flex-direction: column;
   justify-content: space-between;
-  z-index: 5;
-  display: none;
+  z-index: 1001;
+  display: none;        /* shown via media query below */
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
 }
 .hamburger-lines .line {
   display: block;
-  height: 1px; width: 100%;
+  height: 1px;
+  width: 100%;
   background: var(--text-secondary);
+  border-radius: 1px;
+  transition: transform 0.4s var(--ease-expo), opacity 0.25s, width 0.3s, background 0.3s;
+  transform-origin: left center;
 }
-.hamburger-lines .line1 { transform-origin: 0% 0%; transition: transform 0.4s var(--ease-expo), background 0.3s; }
-.hamburger-lines .line2 { transition: opacity 0.25s, transform 0.25s; }
-.hamburger-lines .line3 { transform-origin: 0% 100%; transition: transform 0.4s var(--ease-expo), background 0.3s; width: 70%; }
+.hamburger-lines .line3 { width: 70%; }
 
-input[type="checkbox"]:checked ~ .hamburger-lines .line1 { transform: rotate(42deg); background: var(--gold); }
-input[type="checkbox"]:checked ~ .hamburger-lines .line2 { opacity: 0; transform: scaleX(0); }
-input[type="checkbox"]:checked ~ .hamburger-lines .line3 { transform: rotate(-42deg); background: var(--gold); width: 100%; }
+/* Open state — toggled by JS adding .nav-open to #navbar */
+#navbar.nav-open .hamburger-lines .line1 { transform: rotate(42deg); background: var(--gold); }
+#navbar.nav-open .hamburger-lines .line2 { opacity: 0; transform: scaleX(0); }
+#navbar.nav-open .hamburger-lines .line3 { transform: rotate(-42deg); background: var(--gold); width: 100%; }
 
 /* ══════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════ */
 @media (max-width: 950px) {
+  /* Mobile nav drawer */
   #navbar .nav-items {
     position: fixed;
     flex-direction: column;
@@ -968,14 +971,20 @@ input[type="checkbox"]:checked ~ .hamburger-lines .line3 { transform: rotate(-42
     top: 0; left: -100%;
     background: rgba(10,12,15,0.97);
     backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     width: 280px; height: 100%;
     padding: 8rem 3rem;
     transition: left 0.5s var(--ease-expo);
     border-right: 1px solid var(--border-subtle);
+    z-index: 1000;
   }
-  input[type="checkbox"]:checked ~ .nav-items { left: 0; }
-  #navbar .checkbox { display: block; }
+
+  /* JS adds .nav-open to #navbar → slide drawer in */
+  #navbar.nav-open .nav-items { left: 0; }
+
+  /* Show hamburger button */
   .hamburger-lines { display: flex; }
+
   .about-img { width: 20rem; }
   .about-img::after { display: none; }
 }

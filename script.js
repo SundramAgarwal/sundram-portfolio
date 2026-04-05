@@ -123,12 +123,33 @@ window.addEventListener('scroll', function () {
   });
 })();
 
-// ── Mobile nav: close on link click ──────────────────────────
+// ── Mobile nav: hamburger JS toggle ──────────────────────────
 (function () {
-  const cb = document.querySelector('#navbar .checkbox');
-  if (!cb) return;
-  document.querySelectorAll('#navbar .nav-items li a').forEach(l => {
-    l.addEventListener('click', () => { cb.checked = false; });
+  const navbar    = document.getElementById('navbar');
+  const hamburger = document.querySelector('.hamburger-lines');
+  const navLinks  = document.querySelectorAll('#navbar .nav-items li a');
+  if (!hamburger || !navbar) return;
+
+  // Toggle nav open/close on hamburger click
+  hamburger.addEventListener('click', () => {
+    navbar.classList.toggle('nav-open');
+  });
+
+  // Close when any nav link is clicked
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navbar.classList.remove('nav-open');
+    });
+  });
+
+  // Close when clicking outside the nav on mobile
+  document.addEventListener('click', e => {
+    if (
+      navbar.classList.contains('nav-open') &&
+      !navbar.contains(e.target)
+    ) {
+      navbar.classList.remove('nav-open');
+    }
   });
 })();
 
